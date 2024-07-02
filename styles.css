@@ -1,0 +1,22 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --red-clr: #ff0000;
+    --dark-red-clr: #cc0000;
+    --blue: #3b4cca;
+    --yellow: #ffde00;
+    --gold: #b3a125;
+    --white: #fcf7f8;
+    --black: #100b00;
+    --soft-dark: #262626;
+}
+
+.output-info {
+    /*  */
+}
