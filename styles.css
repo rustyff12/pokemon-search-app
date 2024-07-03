@@ -15,8 +15,107 @@
     --white: #fcf7f8;
     --black: #100b00;
     --soft-dark: #262626;
+    --soft-green: #00c04b;
 }
 
+body {
+    background-color: var(--soft-dark);
+    padding: 2rem;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    margin-bottom: 1rem;
+    color: var(--white);
+    text-align: center;
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+}
+
+h1 img {
+    height: 2.75em;
+    width: auto;
+}
+
+/* App container */
+.app-container {
+    background-color: var(--blue);
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Search */
+.search-container {
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.search-box {
+    /* background-color: green; */
+    display: flex;
+    padding: 0.5rem;
+    gap: 1rem;
+}
+
+.search-box #search-button {
+    padding: 0.3rem 1rem;
+    font-size: 1.125rem;
+    border: 1px solid var(--black);
+    border-radius: 10px;
+    background-color: var(--soft-green);
+    cursor: pointer;
+    transition: 1s ease;
+}
+
+.search-box #search-button:hover {
+    background-color: var(--yellow);
+}
+/* Output */
+.output-display {
+    height: 50svh;
+    background-color: var(--white);
+}
+
+/* .output-info {
+
+} */
 .output-info {
-    /*  */
+    /* padding: 1rem; */
+    margin-top: 1rem;
+}
+
+.output-info table {
+    /* background-color: red; */
+    height: 50svh;
+    width: 100%;
+    /* text-align: center; */
+    border-collapse: collapse;
+    border: 5px solid #f5f6f7;
+}
+
+th:nth-child(even),
+td:nth-child(even) {
+    border-left: 5px solid #f5f6f7;
+}
+
+tr {
+    border-bottom: 5px solid #f5f6f7;
+}
+
+td,
+th {
+    text-align: center;
+    padding: 8px;
+}
+
+th {
+    font-size: 1.25rem;
+    text-decoration: underline;
 }
