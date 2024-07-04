@@ -25,11 +25,13 @@ async function getData(nameOrId) {
         if (!res.ok) {
             // throw new Error(`Response status: ${res.status}`);
             errorRes.textContent = "Please enter a valid pokemon";
+            // alert("Pokémon not found");
+
             return;
         }
-
+        errorRes.textContent = "";
         const jsonObj = await res.json();
-        console.log(jsonObj);
+
         useData(jsonObj);
     } catch (err) {
         console.error(err.message);
@@ -38,12 +40,41 @@ async function getData(nameOrId) {
 
 async function useData(obj) {
     if (pokePic.hasChildNodes()) {
-        pokePic.removeChild(pokePic.childNodes[0]);
+        while (pokePic.firstChild) {
+            pokePic.removeChild(pokePic.firstChild);
+        }
     }
 
     let newImg = document.createElement("img");
+
     const { height, id, name, weight, sprites, stats, types } = obj;
     const { front_default } = sprites;
+
+    const typeToAdd = await pokeTypeFunc(types);
+
+    if (pokeType.hasChildNodes()) {
+        while (pokeType.firstChild) {
+            pokeType.removeChild(pokeType.firstChild);
+        }
+    }
+
+    if (typeToAdd.length > 1) {
+        for (let i = 0; i < typeToAdd.length; i++) {
+            let newType = document.createElement("p");
+            newType.classList = "type";
+            newType.classList += ` ${typeToAdd[i]}`;
+
+            newType.textContent = typeToAdd[i];
+            pokeType.appendChild(newType);
+        }
+    } else {
+        let newType = document.createElement("p");
+        newType.classList = "type";
+        newType.classList += ` ${typeToAdd[0]}`;
+
+        newType.textContent = typeToAdd[0];
+        pokeType.appendChild(newType);
+    }
 
     let statsArr = [];
     stats.forEach((elem) => {
@@ -65,13 +96,25 @@ async function useData(obj) {
 
     newImg.src = front_default;
     newImg.alt = name;
+    newImg.id = "sprite";
     pokePic.appendChild(newImg);
+}
+
+/* types */
+async function pokeTypeFunc(obj) {
+    let typeFound = [];
+    obj.forEach((elem) => {
+        const toLook = Object.entries(elem);
+        typeFound.push(toLook[1][1].name);
+    });
+
+    return typeFound;
 }
 
 /* search */
 searchBtn.addEventListener("click", () => {
     const toSearch = searchInput.value;
     const cleanedSearch = toSearch.split(" ").join("-").toLowerCase();
-    // console.log(cleanedSearch);
+
     getData(cleanedSearch);
 });
